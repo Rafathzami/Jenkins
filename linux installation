@@ -1,0 +1,100 @@
+# Jenkins Installation Guide (Linux)
+
+This guide provides step-by-step instructions for installing Jenkins on Linux.
+
+## Prerequisites
+
+- Linux operating system (e.g., Ubuntu, CentOS, Debian)
+- Root or sudo access to the machine
+
+## Installation Steps
+
+1. **Update System Packages:**
+   - Open a terminal.
+   - Update the system packages using the package manager appropriate for your Linux distribution.
+     - For Ubuntu/Debian:
+       ```
+       sudo apt update
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo yum update
+       ```
+
+2. **Install Java Development Kit (JDK):**
+   - Jenkins requires Java Development Kit (JDK) to run.
+   - Install OpenJDK or Oracle JDK using the package manager appropriate for your Linux distribution.
+     - For Ubuntu/Debian:
+       ```
+       sudo apt install default-jdk
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo yum install java-1.8.0-openjdk
+       ```
+
+3. **Add Jenkins Repository:**
+   - Add the Jenkins repository to your system.
+     - For Ubuntu/Debian:
+       ```
+       wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+       sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+       sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+       ```
+
+4. **Install Jenkins:**
+   - Update the system packages again to include the Jenkins repository.
+     - For Ubuntu/Debian:
+       ```
+       sudo apt update
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo yum update
+       ```
+   - Install Jenkins using the package manager.
+     - For Ubuntu/Debian:
+       ```
+       sudo apt install jenkins
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo yum install jenkins
+       ```
+
+5. **Start Jenkins Service:**
+   - Start the Jenkins service using the init system appropriate for your Linux distribution.
+     - For Ubuntu/Debian:
+       ```
+       sudo systemctl start jenkins
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo service jenkins start
+       ```
+
+6. **Unlock Jenkins:**
+   - Retrieve the initial administrator password from the Jenkins installation directory.
+     - For Ubuntu/Debian:
+       ```
+       sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+       ```
+     - For CentOS/RHEL:
+       ```
+       sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+       ```
+   - Copy the password.
+
+7. **Access Jenkins:**
+   - Open a web browser and navigate to the Jenkins URL: `http://<your-server-ip>:8080`
+   - Paste the copied password into the "Administrator password" field.
+   - Follow the on-screen instructions to complete the setup.
+
+Congratulations! You have successfully installed Jenkins on Linux.
+
+For more information and advanced configuration options, refer to the [Jenkins Documentation](https://www.jenkins.io/doc/).
+
